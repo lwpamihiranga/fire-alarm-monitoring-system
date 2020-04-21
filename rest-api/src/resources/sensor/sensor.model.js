@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const sensorSchema = mongoose.schema({
+const sensorSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   isActive: Boolean,
   location: { roomNo: Number, floor: Number },
