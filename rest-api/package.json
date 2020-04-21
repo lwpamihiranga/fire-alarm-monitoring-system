@@ -1,0 +1,11 @@
+{
+  "name": "rest-api",
+  "version": "1.0.0",
+  "description": "REST API for a fire alarm system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amith Mihiranga",
+  "license": "ISC"
+}
