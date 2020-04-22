@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const sensorRouter = require('./resources/sensor/sensor.router');
+const userRouter = require('./resources/user/user.router');
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/sensor', sensorRouter);
+app.use('/user', userRouter);
 
 app.listen(3000, () => {
   console.log('REST API started to listen on port 3000');
