@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const Sensor = require('./sensor.model');
 
 exports.getAll = (req, res) => {
