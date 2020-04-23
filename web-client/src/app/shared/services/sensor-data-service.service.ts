@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SensorDataServiceService {
+  private _url: string = 'http://localhost:3000/sensor/';
 
-  constructor() { }
+  constructor(private http: HttpClient) {}
+
+  getSensorsData() {
+    return this.http.get(this._url);
+  }
 }
