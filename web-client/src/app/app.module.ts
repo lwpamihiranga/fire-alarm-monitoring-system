@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { SensorStatusComponent } from './shared/components/sensor-status/sensor-status.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SensorStatusComponent
   ],
   imports: [
     BrowserModule,
