@@ -8,7 +8,7 @@ import { Sensor } from '../../interfaces/sensor';
   styleUrls: ['./sensor-list.component.css'],
 })
 export class SensorListComponent implements OnInit {
-  private sensors: Sensor[];
+  sensors: Sensor[];
 
   constructor(private sensorDataService: SensorDataService) {
     this.sensors = [];

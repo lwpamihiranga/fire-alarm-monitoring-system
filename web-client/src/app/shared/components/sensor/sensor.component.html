@@ -1,1 +1,32 @@
-<p>sensor works!</p>
+<div style="margin: 10px; border: 1px solid black; width: fit-content; float: left; display: inline-flex;">
+  <table
+    [ngClass]="{'inActive': !checkActive(sensor), 'activeNormal': checkActive(sensor) && !isDanger(sensor), 'activeDanger': checkActive(sensor) && isDanger(sensor)}">
+    <tr>
+      <td>Active?</td>
+      <td>{{ sensor.isActive }}</td>
+    </tr>
+    <tr>
+      <td>Location</td>
+      <td>
+        <table>
+          <tr>
+            <td>Room No:</td>
+            <td>{{ sensor.location.roomNo }}</td>
+          </tr>
+          <tr>
+            <td>Floor:</td>
+            <td>{{ sensor.location.floor }}</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>Smoke Level:</td>
+      <td>{{ sensor.smokeLevel }}</td>
+    </tr>
+    <tr>
+      <td>CO2 Level:</td>
+      <td>{{ sensor.co2Level }}</td>
+    </tr>
+  </table>
+</div>
