@@ -1,4 +1,4 @@
-<div style="margin: 10px; border: 1px solid black; width: fit-content; float: left; display: inline-flex;">
+<div class="card">
   <table
     [ngClass]="{'inActive': !checkActive(sensor), 'activeNormal': checkActive(sensor) && !isDanger(sensor), 'activeDanger': checkActive(sensor) && isDanger(sensor)}">
     <tr>
