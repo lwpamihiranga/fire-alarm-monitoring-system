@@ -1,3 +1,4 @@
+// interface for the sensor data
 export interface Sensor {
   isActive: boolean;
   location: Location;

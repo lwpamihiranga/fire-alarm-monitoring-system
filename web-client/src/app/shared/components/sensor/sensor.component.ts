@@ -7,19 +7,22 @@ import { Sensor } from '../../interfaces/sensor';
   styleUrls: ['./sensor.component.css'],
 })
 export class SensorComponent implements OnInit {
+  // get the input parameter passed to the component from the parent component
   @Input() sensor: Sensor;
 
-  constructor() {
-  }
+  constructor() {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
+  // check whether a passed sensor is active or not
   checkActive(sensor: Sensor) {
     return sensor.isActive;
   }
 
+  // this function checks for whether a given sensor's smoke level or co2 level is greter than 5. It will return true if the level is
+  // greater than 5, otherwise false.
   isDanger(sensor: Sensor) {
-    if (sensor.smokeLevel >= 5 || sensor.co2Level >= 5) {
+    if (sensor.smokeLevel > 5 || sensor.co2Level > 5) {
       return true;
     } else {
       return false;
