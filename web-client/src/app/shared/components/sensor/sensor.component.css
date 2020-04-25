@@ -1,0 +1,11 @@
+.inActive {
+  background-color: grey;
+}
+
+.activeNormal {
+  background-color: green;
+}
+
+.activeDanger {
+  background-color: red;
+}
