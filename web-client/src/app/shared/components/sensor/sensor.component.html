@@ -1,31 +1,36 @@
 <div class="card">
   <table
-    [ngClass]="{'inActive': !checkActive(sensor), 'activeNormal': checkActive(sensor) && !isDanger(sensor), 'activeDanger': checkActive(sensor) && isDanger(sensor)}">
+    [ngClass]="{
+      inActive: !checkActive(sensor),
+      activeNormal: checkActive(sensor) && !isDanger(sensor),
+      activeDanger: checkActive(sensor) && isDanger(sensor)
+    }"
+  >
     <tr>
-      <td>Active?</td>
+      <td class="topic">Active</td>
       <td>{{ sensor.isActive }}</td>
     </tr>
     <tr>
-      <td>Location</td>
+      <td class="topic">Location</td>
       <td>
         <table>
           <tr>
-            <td>Room No:</td>
+            <td class="sub-topic">Room No</td>
             <td>{{ sensor.location.roomNo }}</td>
           </tr>
           <tr>
-            <td>Floor:</td>
+            <td class="sub-topic">Floor</td>
             <td>{{ sensor.location.floor }}</td>
           </tr>
         </table>
       </td>
     </tr>
     <tr>
-      <td>Smoke Level:</td>
+      <td class="topic">Smoke Level</td>
       <td>{{ sensor.smokeLevel }}</td>
     </tr>
     <tr>
-      <td>CO2 Level:</td>
+      <td class="topic">CO2 Level</td>
       <td>{{ sensor.co2Level }}</td>
     </tr>
   </table>

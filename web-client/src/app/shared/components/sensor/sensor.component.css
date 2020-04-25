@@ -13,8 +13,25 @@
 .card {
   margin: 10px;
   border: 1px solid black;
-  width: fit-content; 
+  width: fit-content;
   float: left;
   display: inline-flex;
   justify-content: center;
+  font-size: large;
+}
+
+.topic {
+  font-weight: bold;
+}
+
+.sub-topic {
+  font-style: italic;
+}
+
+td {
+  width: 10rem;
+}
+
+tr {
+  height: 2rem;
 }
