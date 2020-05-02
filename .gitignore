@@ -7,3 +7,6 @@
 /rmi-server/build/
 /rmi-test-client/build/
 /rmi-test-client/dist/
+/java-rmi-interfaces/nbproject/private/
+/java-rmi-interfaces/dist/
+/java-rmi-interfaces/build/
