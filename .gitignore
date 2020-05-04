@@ -2,3 +2,5 @@
 /java-rmi-interfaces/build/
 /java-rmi-interfaces/dist/
 /java-rmi-server/nbproject/private/
+/java-rmi-server/dist/
+/java-rmi-server/build/
