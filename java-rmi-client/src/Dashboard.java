@@ -1,13 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import java.awt.Color;
+import javax.swing.*;
+import java.util.Timer;
 
-/**
- *
- * @author amith
- */
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
+import java.util.TimerTask;
+
+import org.json.*;
+
 public class Dashboard extends javax.swing.JFrame {
 
     /**
@@ -15,6 +15,20 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        
+        getSensorData();
+        
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("Getting sensor data after 30 seconds...");
+                jPanel2.removeAll();
+                getSensorData();  
+                jPanel2.revalidate();
+                jPanel2.repaint();
+            }
+        }, 30 * 1000, 30 * 1000);
     }
 
     /**
@@ -26,17 +40,54 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Dashboard");
+        setPreferredSize(new java.awt.Dimension(1200, 700));
+        setSize(new java.awt.Dimension(1200, 700));
+
+        jPanel1.setBackground(new java.awt.Color(85, 136, 245));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Fire Alarm System Dashboard");
+        jLabel1.setAlignmentX(0.5F);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(442, 442, 442)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(516, 516, 516))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(50, 50, 50))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel2.setLayout(new java.awt.GridLayout(10, 0));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +129,57 @@ public class Dashboard extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    private void getSensorData() {
+        try {
+            Registry registry = LocateRegistry.getRegistry(1099);
+            
+            SensorDataService stub = (SensorDataService) registry.lookup("SensorDataService");
+            
+            String response = stub.getSensorData();
+            
+            //System.out.println(response);
+            
+            response = "{ results: " + response + " }";
+            
+            JSONObject responseObj = new JSONObject(response);
+            
+            JSONArray responseArr = responseObj.getJSONArray("results");
+
+            for(int i = 0; i < responseArr.length(); i++) {
+                JSONObject obj = responseArr.getJSONObject(i);
+                
+                boolean isActive = obj.getBoolean("isActive");
+                int roomNo = obj.getJSONObject("location").getInt("roomNo");
+                int floor = obj.getJSONObject("location").getInt("floor");
+                int smokeLevel = obj.getInt("smokeLevel");
+                int co2Level = obj.getInt("co2Level");
+                
+                String sensor = "Sensor" + (i + 1);
+                JTextArea sensorCard = new JTextArea(sensor);
+                sensorCard.append("\nActive: " + isActive);
+                sensorCard.append("\nRoom No: " + roomNo);
+                sensorCard.append("\nFloor: " + floor);
+                sensorCard.append("\nSmoke Level: " + smokeLevel);
+                sensorCard.append("\nCO2 Level: " + co2Level);
+                
+                if(!isActive) {
+                    sensorCard.setBackground(Color.DARK_GRAY);
+                    sensorCard.setForeground(Color.WHITE);
+                } else if(smokeLevel > 5 || co2Level > 5) {
+                    sensorCard.setBackground(Color.red);
+                    sensorCard.setForeground(Color.WHITE);
+                } else {
+                    sensorCard.setBackground(Color.green);
+                }
+                jPanel2.add(sensorCard);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
