@@ -16,7 +16,7 @@ public class Server {
             Registry registry = LocateRegistry.createRegistry(1099);
             
             registry.bind("LoginServie", stubOne);
-            registry.bind("SensorDateService", stubTwo);
+            registry.bind("SensorDataService", stubTwo);
             
             System.err.println("Server ready");
         } catch (Exception e) {
