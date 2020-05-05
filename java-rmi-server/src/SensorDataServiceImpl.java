@@ -46,39 +46,40 @@ public class SensorDataServiceImpl implements SensorDataService {
             url = new URL("http://localhost:3000/sensor");
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Contenct-Type", "application/json");
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
             conn.setRequestProperty("Authorization", jsonToken);
-            conn.setDoInput(true);
+            conn.setDoOutput(true);
             
             JSONObject locationObj = new JSONObject();
-            locationObj.put("roonNo", roomNo);
+            locationObj.put("roomNo", roomNo);
             locationObj.put("floor", floor);
             
             // TODO: build request json body here
             JSONObject reqBody =  new JSONObject();
-            reqBody.put("isActive", true);
-            reqBody.put("location", locationObj);
-            reqBody.put("smokeLevel", 0);
+            
             reqBody.put("co2Level", 0);
+            reqBody.put("smokeLevel", 0);
+            reqBody.put("location", locationObj);
+            reqBody.put("isActive", true);
             
             String jsonInputString = reqBody.toString();
             
+            
             try(OutputStream os = conn.getOutputStream()) {
-                byte[] input = jsonInputString.getBytes("utf-8");
+                byte[]   input = jsonInputString.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
             
-            try(BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), "utf-8"))) {
+            try(BufferedReader br = new BufferedReader(
+                new InputStreamReader(conn.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
                 String responseLine = null;
-
-                while((responseLine = br.readLine()) != null) {
+                while ((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
                 }
-
-                System.out.println(response.toString());
+//                System.out.println(response.toString());
             }
-            
             if(conn.getResponseCode() == 201) {
                 isSuccess = true;
             }

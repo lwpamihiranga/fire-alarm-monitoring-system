@@ -13,12 +13,14 @@ public class LoginServiceImpl implements LoginService {
         
         try {
             url = new URL("http://localhost:3000/user/login");
-            conn = (HttpURLConnection) url.openConnection();
+        
+            conn = (HttpURLConnection) url.openConnection(); 
             conn.setRequestMethod("POST");
-            conn.setRequestProperty("Contenct-Type", "application/json");
-            conn.setDoInput(true);
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept", "application/json");
+            conn.setDoOutput(true);;
             
-            String jsonInputString = "{ \"email\": " + username + ", \"password\": " + password + " }"; // TODO: build request json body here
+            String jsonInputString = "{ \"email\": \"" + username + "\", \"password\": \"" + password + "\" }"; // TODO: build request json body here
             
             try(OutputStream os = conn.getOutputStream()) {
                 byte[] input = jsonInputString.getBytes("utf-8");

@@ -4,7 +4,7 @@ import java.rmi.registry.Registry;
 import org.json.*;
 
 public class AdminLogin extends javax.swing.JFrame {
-
+    static String jwt_token;
     /**
      * Creates new form AdminLogin
      */
@@ -201,11 +201,20 @@ public class AdminLogin extends javax.swing.JFrame {
             
             String response = stub.loginAsAdmin(username, password);
             
-            //JSONObject responseObj = new JSONObject(response);
+            JSONObject responseObj = new JSONObject(response);
             
-            //String message = responseObj.getString("message");
+            String message = responseObj.getString("message");
             
-            System.out.println(response);
+            if(message.equalsIgnoreCase("Authentication successfull")) {
+                jwt_token = responseObj.getString("token");
+                
+                System.out.println(jwt_token);
+                setVisible(false);
+                AdminPanel adminPanel = new AdminPanel();
+                adminPanel.setVisible(true);
+            }
+            
+            System.out.println(message);
         } catch (Exception e) {
             e.printStackTrace();
         }

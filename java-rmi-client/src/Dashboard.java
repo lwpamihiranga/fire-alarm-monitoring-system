@@ -110,8 +110,15 @@ public class Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AdminLogin adminPanel = new AdminLogin();
-        adminPanel.setVisible(true);
+        System.out.println(AdminLogin.jwt_token);
+        if(AdminLogin.jwt_token != null) {
+            AdminPanel adminPanel = new AdminPanel();
+            adminPanel.setVisible(true);
+        } else {
+        AdminLogin adminLogin = new AdminLogin();
+        adminLogin.setVisible(true);
+        }
+   
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
