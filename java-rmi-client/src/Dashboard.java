@@ -188,7 +188,7 @@ public class Dashboard extends javax.swing.JFrame {
                 int smokeLevel = obj.getInt("smokeLevel");
                 int co2Level = obj.getInt("co2Level");
                 
-                String sensor = "Sensor" + (i + 1);
+                String sensor = "Sensor " + (i + 1);
                 JTextArea sensorCard = new JTextArea(sensor);
                 sensorCard.append("\nActive: " + isActive);
                 sensorCard.append("\nRoom No: " + roomNo);
