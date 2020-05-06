@@ -1,0 +1,21 @@
+Prerequisites:
+    # You should have nodeJS, npm, Angular CLI, MongoDB, Java JDK 8 or above.
+
+Step 1  : Clone the project into your computer
+Step 2  : Go to the rest-api and run the command "npm ci". This will install all the node modules that needed to run the REST API.
+Step 3  : Go to the web-client directory and also run "npm ci".
+Step 4  : In the rest-api directory run "npm start" command to start the REST API.
+Step 5  : Connect to your local MongoDB server and check whether there is a DB called "firealarm_db". If not created it. Then create
+        a collection name "users" and "sensor".
+Step 6  : Then import the "user_collection" into the users collection and "sensor_collection" to the sensors collection.(You can find the
+        collection files in the directory named "db_collections");
+Step 7  : Then run the web-client using the "npm start" in the web-client directory. You can access the web-client in "http://localhost:4200"
+Step 8  : Then to run the RMI server go the "dist" directory in "java-rmi-server" and run "java -jar java-rmi-server.jar"
+Step 9  : To run the RMI client go the "dist" directory in "java-rmi-client" and run "java -jar java-rmi-client.jar"
+Step 10(Optional) : If you want to run the replication app go to "dist" directory in "replicate-fire-sensor-app" and run "java -jar replicate-fire-sensor-app.jar"
+
+You can run multiple replication apps to replicate several sensors.
+
+P.S :
+    admin login username : admin@root.com   
+    admin login password : root
