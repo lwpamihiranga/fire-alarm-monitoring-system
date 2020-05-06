@@ -168,6 +168,7 @@ public class Dashboard extends javax.swing.JFrame {
             Registry registry = LocateRegistry.getRegistry(1099);
             
             SensorDataService stub = (SensorDataService) registry.lookup("SensorDataService");
+            AlertService stub2 = (AlertService) registry.lookup("AlertService");
             
             String response = stub.getSensorData();
             
@@ -202,6 +203,8 @@ public class Dashboard extends javax.swing.JFrame {
                 } else if(smokeLevel > 5 || co2Level > 5) {
                     sensorCard.setBackground(Color.red);
                     sensorCard.setForeground(Color.WHITE);
+                    stub2.sendEmailAlert(obj.getString("_id"));
+                     stub2.sendSMSAlert(obj.getString("_id"));
                 } else {
                     sensorCard.setBackground(Color.green);
                 }
