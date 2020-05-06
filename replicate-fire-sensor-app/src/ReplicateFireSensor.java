@@ -108,7 +108,10 @@ public class ReplicateFireSensor {
     
     public static void main(String args[]) {
         ReplicateFireSensor app = new ReplicateFireSensor();
-        String sensorID = "5ea202345ffe0334909a9d10";
+        Scanner myScanner = new Scanner(System.in);
+        
+        System.out.print("Input sensor id to replicate: ");
+        String sensorID = myScanner.nextLine();
         
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
