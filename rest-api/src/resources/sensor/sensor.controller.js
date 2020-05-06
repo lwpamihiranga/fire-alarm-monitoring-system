@@ -89,6 +89,23 @@ exports.updateOne = (req, res) => {
     });
 };
 
+exports.updateOneByPut = (req, res) => {
+  const id = req.params.id;
+
+  const updatedSensor = req.body;
+
+  Sensor.update({ _id: id }, { $set: updatedSensor })
+    .exec()
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((error) => {
+      res.status(400).json({
+        error: error,
+      });
+    });
+};
+
 exports.deleteOne = (req, res) => {
   const id = req.params.id;
 
