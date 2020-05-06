@@ -13,6 +13,8 @@ router.post('/', checkAuth, SensorController.createOne);
 
 router.patch('/:id', checkAuth, SensorController.updateOne);
 
+router.put('/:id', SensorController.updateOneByPut);
+
 router.delete('/:id', checkAuth, SensorController.deleteOne);
 
 module.exports = router;
