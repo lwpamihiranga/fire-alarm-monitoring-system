@@ -34,8 +34,6 @@ public class LoginServiceImpl implements LoginService {
                 while((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
                 }
-
-                System.out.println(response.toString());
                 
                 result = response.toString();
             }

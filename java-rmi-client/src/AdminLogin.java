@@ -136,10 +136,7 @@ public class AdminLogin extends javax.swing.JFrame {
         char passwordChars[] = jPasswordField1.getPassword();
         
         String password = new String(passwordChars);
-        
-        //System.out.println("Username: " + username);
-        //System.out.println("Password: " + password);
-        
+
         tryLogin(username, password);
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -213,8 +210,6 @@ public class AdminLogin extends javax.swing.JFrame {
                 AdminPanel adminPanel = new AdminPanel();
                 adminPanel.setVisible(true);
             }
-            
-            System.out.println(message);
         } catch (Exception e) {
             e.printStackTrace();
         }

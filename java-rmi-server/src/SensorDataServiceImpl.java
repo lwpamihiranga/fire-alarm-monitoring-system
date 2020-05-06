@@ -55,7 +55,6 @@ public class SensorDataServiceImpl implements SensorDataService {
             locationObj.put("roomNo", roomNo);
             locationObj.put("floor", floor);
             
-            // TODO: build request json body here
             JSONObject reqBody =  new JSONObject();
             
             reqBody.put("co2Level", 0);
@@ -64,8 +63,7 @@ public class SensorDataServiceImpl implements SensorDataService {
             reqBody.put("isActive", true);
             
             String jsonInputString = reqBody.toString();
-            
-            
+                
             try(OutputStream os = conn.getOutputStream()) {
                 byte[]   input = jsonInputString.getBytes("utf-8");
                 os.write(input, 0, input.length);
@@ -78,7 +76,6 @@ public class SensorDataServiceImpl implements SensorDataService {
                 while ((responseLine = br.readLine()) != null) {
                     response.append(responseLine.trim());
                 }
-//                System.out.println(response.toString());
             }
             if(conn.getResponseCode() == 201) {
                 isSuccess = true;

@@ -172,8 +172,6 @@ public class Dashboard extends javax.swing.JFrame {
             
             String response = stub.getSensorData();
             
-            //System.out.println(response);
-            
             response = "{ results: " + response + " }";
             
             JSONObject responseObj = new JSONObject(response);
@@ -204,7 +202,8 @@ public class Dashboard extends javax.swing.JFrame {
                     sensorCard.setBackground(Color.red);
                     sensorCard.setForeground(Color.WHITE);
                     stub2.sendEmailAlert(obj.getString("_id"));
-                     stub2.sendSMSAlert(obj.getString("_id"));
+                    stub2.sendSMSAlert(obj.getString("_id"));
+                    JOptionPane.showMessageDialog(null, "Fire Alert! " + sensor);
                 } else {
                     sensorCard.setBackground(Color.green);
                 }

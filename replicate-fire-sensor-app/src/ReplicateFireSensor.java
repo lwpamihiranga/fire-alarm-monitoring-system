@@ -121,9 +121,9 @@ public class ReplicateFireSensor {
                 boolean success = app.updateSensor(obj);
         
                 if(success) {
-                    System.out.println("Success");
+                    System.out.println("Successfully updated the sensor\n");
                 } else {
-                    System.out.println("Failed");
+                    System.out.println("Failed to update the sensor\n");
                 }
             }
         }, 10 * 1000, 10 * 1000);
