@@ -6,3 +6,5 @@
 /java-rmi-server/build/
 /java-rmi-client/build/
 /java-rmi-client/dist/
+/replicate-fire-sensor-app/nbproject/private/
+/replicate-fire-sensor-app/build/
