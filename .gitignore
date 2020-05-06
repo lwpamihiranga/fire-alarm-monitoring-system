@@ -1,11 +1,11 @@
 /java-rmi-interfaces/nbproject/private/
 /java-rmi-interfaces/build/
-/java-rmi-interfaces/dist/
+# /java-rmi-interfaces/dist/
 /java-rmi-server/nbproject/private/
 /java-rmi-server/dist/
 /java-rmi-server/build/
 /java-rmi-client/build/
-/java-rmi-client/dist/
+# /java-rmi-client/dist/
 /replicate-fire-sensor-app/nbproject/private/
 /replicate-fire-sensor-app/build/
-/replicate-fire-sensor-app/dist/
+# /replicate-fire-sensor-app/dist/
