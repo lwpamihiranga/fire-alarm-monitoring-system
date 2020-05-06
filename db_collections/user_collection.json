@@ -1,0 +1,2 @@
+{"_id":{"$oid":"5ea1de655c23b9296c80f989"},"email":"admin@root.com","password":"$2b$10$oJk6L14ewYmV9YXZNQJJyO0souLGq50b.gPROYx58fx3yjkTBxSpi","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5ea1e118b07a371848fe5a3a"},"email":"amith@test.com","password":"$2b$10$ijX7W/c9RibK2gNtIZNIzOhZcLUj8My5vRO10PAetAHOg.8RWq5Fi","__v":{"$numberInt":"0"}}
